@@ -1,0 +1,24 @@
+#chatbox {
+}
+
+#chat-form {
+  display: flex;
+}
+
+#chat-display {
+  height: 300px;
+  width: 448px;
+  border: 1px dotted black;
+}
+
+#chat-input {
+  height: 30px;
+  width: 400px;
+  border: 1px solid black;
+}
+
+#submit-chat {
+  height: 34px;
+  border: none;
+  border: 1px solid black;
+}

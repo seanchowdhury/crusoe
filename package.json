@@ -1,0 +1,22 @@
+{
+  "name": "crusoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r esm server/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "esm": "^3.2.5",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^8.4.0",
+    "pg": "^7.8.0",
+    "sequelize": "^4.42.0",
+    "socket.io": "^2.2.0"
+  }
+}

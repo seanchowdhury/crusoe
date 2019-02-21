@@ -18,10 +18,10 @@ class ChatDisplay extends React.Component {
   }
 
   render() {
-    console.log(this.state.messages)
     const messages = this.state.messages.map((message, idx) => {
+      const messageColor = `message-color-${message.playerNumber}`
       return (
-        <div key={idx} className='chat-message'>{message}</div>
+        <div key={idx} className='chat-message'>[{message.time}]<span className={messageColor}>{message.username}:</span> {message.message}</div>
       )
     })
 

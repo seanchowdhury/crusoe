@@ -1,42 +1,47 @@
 import Cookie from 'js-cookie';
+import history from '../history';
+import { receiveCurrentUser } from './userActions'
 
-export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+export const RECEIVE_GAME_CONFIG = 'RECEIVE_GAME_CONFIG'
 
-export const receiveCurrentUser = ({username, userId, token}) => (
+export const receiveGameConfig = ({ gameId }) => (
   {
-    type: RECEIVE_CURRENT_USER,
-    username: username,
-    userId: userId
+    type: RECEIVE_GAME_CONFIG,
+    gameId: gameId
   }
 )
 
-export const authorize = credentials => dispatch => {
-  return fetch('users/authorize', {
+export const createGame = username => dispatch => {
+  return fetch('game/createGame', {
     method: 'POST',
     body: JSON.stringify({
-      username: credentials.username,
-      password: credentials.password
+      username: username
     }),
     headers: {"Content-Type": "application/json"}
   })
   .then(res => res.json())
   .then(json => {
     Cookie.set('access-token', json.token)
-    return dispatch(receiveCurrentUser(json))
+    dispatch(receiveGameConfig(json.gameConfig))
+    dispatch(receiveCurrentUser(json.user))
+    history.push(`/${json.gameConfig.gameId}`)
   })
 }
 
-export const refreshAuthorize = token => dispatch => {
-  return fetch('/users/refreshAuthorize', {
+export const joinGame = (username, passcode) => dispatch => {
+  return fetch('game/joinGame', {
     method: 'POST',
     body: JSON.stringify({
-      userId: token.userId,
-      password: token.password
+      username: username,
+      passcode: passcode
     }),
     headers: {"Content-Type": "application/json"}
   })
   .then(res => res.json())
   .then(json => {
-    return dispatch(receiveCurrentUser(json));
-  });
-};
+    Cookie.set('access-token', json.token)
+    dispatch(receiveGameConfig(json.gameConfig))
+    dispatch(receiveCurrentUser(json.user))
+    history.push(`/${json.gameConfig.gameId}`)
+  })
+}

@@ -10,6 +10,10 @@ const user = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
+    },
+    playerNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   })
 

@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
-import UserReducer from './userReducer';
+import { combineReducers } from 'redux'
+import UserReducer from './userReducer'
+import GameConfigReducer from './gameReducer'
 
 const rootReducers = combineReducers({
-  user: UserReducer
+  user: UserReducer,
+  gameConfig: GameConfigReducer
 });
 
-export default rootReducers;
+export default rootReducers

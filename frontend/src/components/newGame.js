@@ -1,12 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { createGame, joinGame } from '../actions/gameActions'
 
-class NewGame {
+class NewGame extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      username: ""
+      createUsername: "",
+      joinUsername: "",
+      passcode: ""
     }
   }
 
@@ -16,22 +19,41 @@ class NewGame {
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const user = this.state;
-    this.props.createGame(user);
+  handleNewGame(e) {
+    e.preventDefault()
+    this.props.createGame(this.state.createUsername)
+  }
+
+  handleJoinGame(e) {
+    e.preventDefault()
+    this.props.joinGame(this.state.joinUsername, this.state.passcode)
   }
 
   render() {
     return (
-      <form id='new-game-form' onSubmit={(e) => this.handleSubmit(e)}>
-        <input type='text'
-          value={this.state.username}
-          onChange={this.update('username')}
-          placeholder='username'
-          className='new-game-input' />
-        <input type='submit' id='submit-new-game' value='Start New Game' />
-      </form>
+      <div id='new-game-container'>
+        <form className='new-game-form' onSubmit={(e) => this.handleNewGame(e)}>
+          <input type='text'
+            value={this.state.createUsername}
+            onChange={this.update('createUsername')}
+            placeholder='username'
+            className='new-game-input' />
+          <input type='submit' className='submit-new-game' value='Start New Game' />
+        </form>
+        <form className='new-game-form' onSubmit={(e) => this.handleJoinGame(e)}>
+          <input type='text'
+            value={this.state.joinUsername}
+            onChange={this.update('joinUsername')}
+            placeholder='username'
+            className='new-game-input' />
+            <input type='text'
+              value={this.state.passcode}
+              onChange={this.update('passcode')}
+              placeholder='passcode'
+              className='new-game-input' />
+          <input type='submit' className='submit-new-game' value='Join Game' />
+        </form>
+      </div>
     )
   }
 }
@@ -40,15 +62,14 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-const mapDispatchToProps = (dispatch, { location }) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    clearErrors: () => dispatch(clearErrors()),
-    processForm: user => dispatch(createGame(user))
+    createGame: username => dispatch(createGame(username)),
+    joinGame: (username, passcode) => dispatch(joinGame(username, passcode))
   }
 }
-
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewGame);
+)(NewGame)

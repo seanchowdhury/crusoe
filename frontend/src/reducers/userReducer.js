@@ -4,10 +4,11 @@ const UserReducer = (state = null, action) => {
   Object.freeze(state)
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return { username: action.username, userId: action.userId };
+      return { username: action.username, userId: action.userId, playerNumber: action.playerNumber }
+      break
     default:
-      return state;
+      return state
   }
 };
 
-export default UserReducer;
+export default UserReducer

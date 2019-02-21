@@ -1,5 +1,7 @@
 import React from 'react'
-import ChatDisplay from './chatDisplay';
+import { connect } from 'react-redux'
+
+import ChatDisplay from './chatDisplay'
 
 class ChatBox extends React.Component {
   constructor(props) {
@@ -16,7 +18,15 @@ class ChatBox extends React.Component {
 
   sumbitChat(e) {
     e.preventDefault()
-    this.props.socket.emit('sendMessage', this.state.message)
+    const time = new Date().toLocaleTimeString('en-US')
+    const messageDetails = {
+      message: this.state.message,
+      time: time,
+      username: this.props.user.username,
+      playerNumber: this.props.user.playerNumber,
+      gameId: this.props.gameId
+    }
+    this.props.socket.emit('sendMessage', messageDetails)
     this.setState({message: ""})
   }
 
@@ -33,4 +43,18 @@ class ChatBox extends React.Component {
   }
 }
 
-export default ChatBox;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    gameId: state.gameConfig.gameId
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ChatBox)

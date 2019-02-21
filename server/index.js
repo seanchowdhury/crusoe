@@ -8,6 +8,10 @@ import { router as userRoutes } from './routes/users'
 import { router as gameRoutes } from './routes/games'
 
 const app = express()
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 app.use('/users', userRoutes)
 app.use('/game', gameRoutes)
 

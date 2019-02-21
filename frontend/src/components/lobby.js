@@ -23,7 +23,7 @@ class Lobby extends React.Component {
     switch(this.state.progress) {
       case "NOT_STARTED":
         return (
-            <div id='lobby-password prompt'>
+            <div id='lobby-password-prompt'>
               <div>Send your pals the lobby password:</div>
               <div id='lobby-password'>{this.props.gameId}</div>
             </div>

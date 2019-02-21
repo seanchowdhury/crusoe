@@ -35,7 +35,7 @@ class ChatBox extends React.Component {
       <div id='chatbox'>
         <ChatDisplay socket={this.props.socket}/>
         <form id='chat-form' onSubmit={(e) => this.sumbitChat(e)}>
-          <input type='text' id='chat-input' onChange={(e) => this.updateMessage(e.target.value)} value={this.state.message} />
+          <input type='text' id='chat-input' autocomplete="off" onChange={(e) => this.updateMessage(e.target.value)} value={this.state.message} />
           <input type='submit' id='submit-chat' value='SEND' />
         </form>
       </div>

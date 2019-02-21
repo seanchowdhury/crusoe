@@ -17,6 +17,14 @@ class ChatDisplay extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    this.scrollToBottom()
+  }
+
+  scrollToBottom() {
+    this.messagesEnd.scrollIntoView()
+  }
+
   render() {
     const messages = this.state.messages.map((message, idx) => {
       const messageColor = `message-color-${message.playerNumber}`
@@ -28,6 +36,9 @@ class ChatDisplay extends React.Component {
     return (
       <div id='chat-display'>
         {messages}
+        <div style={{ float:"left", clear: "both" }}
+          ref={(el) => { this.messagesEnd = el }}>
+        </div>
       </div>
     )
   }

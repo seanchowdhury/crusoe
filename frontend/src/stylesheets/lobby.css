@@ -1,0 +1,10 @@
+#lobby-password-prompt {
+  text-align: center;
+  margin-top: 40px;
+}
+
+#lobby-password {
+  font-size: 40px;
+  font-weight: bold;
+  color: #574572;
+}

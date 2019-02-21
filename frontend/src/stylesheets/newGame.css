@@ -1,0 +1,32 @@
+#new-game-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 30%;
+}
+
+.new-game-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50%;
+  align-items: center;
+}
+
+.new-game-input {
+  margin: 4px;
+  font-size: 18px;
+  border:1px solid #cccccc;
+  padding: 6px;
+}
+
+.new-game-input:focus {
+  outline: none;
+  background-color: #fffdea;
+}
+
+.submit-new-game {
+  width: 80%;
+  margin: 4px;
+  font-size: 18px;
+}
